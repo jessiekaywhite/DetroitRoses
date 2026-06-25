@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detroit Roses — From the Neighborhoods that Raised Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C41230;
+  --white: #fff;
+  --black: #000;
+  --bg: #080808;
+  --panel: #0d0d0d;
+  --border: #1c1c1c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+header {
+  height: 60px;
+  background: var(--black);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+
+.logo { display: flex; align-items: center; gap: 14px; }
+.logo-text { display: flex; flex-direction: column; }
+.logo h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+.logo h1 .detroit { color: var(--white); }
+.logo h1 .roses   { color: var(--red); font-style: italic; }
+.logo .tagline {
+  font-size: .55rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  margin-top: 3px;
+}
+
+nav { display: flex; gap: 24px; align-items: center; }
+nav a {
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #4a4a4a;
+  text-decoration: none;
+  transition: color .2s;
+}
+nav a:hover { color: var(--white); }
+nav a.cta   { color: var(--red); }
+nav a.active { color: var(--white); }
+
+/* ── Main layout ── */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background rose watermark */
+main::before {
+  content: '';
+  position: absolute;
+  right: -80px;
+  bottom: -80px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(ellipse at center, rgba(196,18,48,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-content {
+  width: min(680px, 100%);
+  position: relative;
+  z-index: 1;
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-size: .6rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--red), transparent);
+  max-width: 60px;
+}
+
+/* Title block */
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.page-title .roses { color: var(--red); font-style: italic; }
+
+.page-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #555;
+  margin-bottom: 36px;
+  line-height: 1.4;
+}
+
+/* Red rule */
+.rule {
+  width: 48px;
+  height: 2px;
+  background: var(--red);
+  margin-bottom: 36px;
+}
+
+/* Mission text */
+.mission {
+  font-size: .92rem;
+  color: #777;
+  line-height: 1.95;
+  margin-bottom: 48px;
+}
+
+/* CTA row */
+.cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity .2s;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover { opacity: .85; }
+
+.btn-secondary {
+  display: inline-block;
+  padding: 13px 32px;
+  border: 1px solid #252525;
+  color: #555;
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all .2s;
+}
+.btn-secondary:hover { border-color: #555; color: var(--white); }
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.footer-left {
+  font-size: .56rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #252525;
+}
+.footer-right {
+  font-size: .56rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #1e1e1e;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-text">
+      <h1><span class="detroit">Detroit</span> <span class="roses">Roses</span></h1>
+      <span class="tagline">From the Neighborhoods that Raised Us · detroitroses.org</span>
+    </div>
+  </div>
+  <nav>
+    <a href="about.html" class="active">About</a>
+    <a href="detroit-roses.html">Archive</a>
+    <a href="#">Contribute</a>
+    <a href="#" class="cta">+ Add Story</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-content">
+    <img src="rose-icon.png" alt="Rose" style="width:80px;height:auto;margin-bottom:20px;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5));display:block;">
+    <div class="eyebrow">A Living Archive</div>
+
+    <h2 class="page-title">
+      <span class="detroit">Detroit</span> <span class="roses">Roses</span>
+    </h2>
+    <p class="page-subtitle">From the Neighborhoods that Raised Us</p>
+
+    <div class="rule"></div>
+
+    <p class="mission">
+      The Detroit Roses Archive is a living, people-centered archive dedicated to preserving
+      the stories, memories, and knowledge of Black Detroit. Rooted in the belief that future
+      generations must understand what came before them in order to build what comes next,
+      the archive serves as a historical reference for the generations that will inherit the city.
+    </p>
+
+    <div class="cta-row">
+      <a href="detroit-roses.html" class="btn-primary">Explore the Archive</a>
+      <a href="#" class="btn-secondary">Contribute a Story</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span class="footer-left">Detroit Roses Archive · detroitroses.org</span>
+  <span class="footer-right">Preserving Black Detroit</span>
+</footer>
+
+</body>
+</html>
