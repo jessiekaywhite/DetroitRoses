@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detroit Roses Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#C41230;--white:#fff;--black:#000;--bg:#080808;--panel:#0d0d0d;--border:#1c1c1c;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:var(--white);font-family:'Inter',sans-serif;min-height:100%;}
+
+/* Header */
+header{height:60px;background:var(--black);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:10;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-text h1{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;letter-spacing:.04em;line-height:1;}
+.logo-text h1 .detroit{color:var(--white);}
+.logo-text h1 .roses{color:var(--red);font-style:italic;}
+.logo-text .tagline{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:#2a2a2a;margin-top:3px;}
+nav{display:flex;gap:24px;align-items:center;}
+nav a{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:#4a4a4a;text-decoration:none;transition:color .2s;}
+nav a:hover{color:var(--white);}
+nav a.back{color:var(--red);}
+
+/* Hero */
+.hero{padding:56px 60px 48px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 60%,rgba(196,18,48,.07) 0%,transparent 65%);pointer-events:none;}
+.hero-eyebrow{font-size:.56rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--red),transparent);max-width:48px;}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,4.2rem);font-weight:700;line-height:1.05;color:var(--white);margin-bottom:14px;}
+.hero-id{font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;color:#282828;margin-bottom:28px;}
+.hero-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2.2vw,1.3rem);color:#888;line-height:1.75;border-left:3px solid var(--red);padding-left:22px;max-width:620px;}
+
+/* Page layout */
+.page-body{display:grid;grid-template-columns:1fr 280px;gap:0;max-width:1100px;margin:0 auto;padding:0 60px 80px;}
+
+/* Left column */
+.main-col{padding-top:44px;padding-right:56px;border-right:1px solid var(--border);}
+
+/* Section blocks */
+.section{margin-bottom:0;}
+.section-hd{margin-top:36px;margin-bottom:6px;}
+.section-hd h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--white);}
+.section-hd:first-child{margin-top:0;}
+.sec-divider{height:1px;background:var(--border);margin:28px 0 0;}
+
+/* Metadata table */
+.meta-table{width:100%;border-collapse:collapse;margin-top:2px;}
+.meta-table tr{border-bottom:1px solid #111;}
+.meta-table td{padding:10px 0;vertical-align:top;}
+.meta-table td:first-child{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#383838;width:160px;padding-right:20px;padding-top:12px;}
+.meta-table td:last-child{font-size:.8rem;color:#aaa;line-height:1.65;}
+
+/* Placeholder / empty content blocks */
+.content-block{background:var(--panel);border:1px solid var(--border);padding:22px 24px;margin-top:8px;}
+.content-block p{font-size:.82rem;color:#666;line-height:1.9;}
+.content-block.empty p{font-style:italic;color:#2a2a2a;}
+.content-block a{color:var(--red);text-decoration:none;}
+
+/* Bibliography */
+.bib-list{list-style:none;margin-top:2px;}
+.bib-list li{font-size:.75rem;color:#383838;line-height:1.75;padding:8px 0;border-bottom:1px solid #0f0f0f;font-style:italic;}
+.bib-list li.empty{color:#222;}
+
+/* Citation */
+.citation-box{background:var(--panel);border:1px solid var(--border);padding:18px 22px;margin-top:8px;}
+.citation-box p{font-size:.72rem;color:#383838;line-height:1.85;font-style:italic;}
+.citation-box strong{color:#555;font-style:normal;}
+.citation-box a{color:var(--red);text-decoration:none;}
+
+/* Right sidebar */
+.side-col{padding-top:44px;padding-left:36px;}
+.side-sec-label{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--red);margin-bottom:10px;display:block;margin-top:28px;}
+.side-sec-label:first-child{margin-top:0;}
+
+/* Photo */
+.photo-main{width:100%;aspect-ratio:3/4;background:#0a0a0a;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.photo-credit{font-size:.58rem;color:#252525;line-height:1.5;margin-top:8px;margin-bottom:4px;}
+
+/* Tags */
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.tag{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid #1a1a1a;color:#303030;padding:4px 9px;}
+
+/* Back link */
+.back-link{display:block;margin-top:28px;padding-top:20px;border-top:1px solid var(--border);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#303030;text-decoration:none;transition:color .2s;}
+.back-link:hover{color:var(--red);}
+
+/* Not found */
+.not-found{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;gap:16px;padding:40px;}
+.not-found h2{font-family:'Playfair Display',serif;font-size:2rem;color:#222;}
+.not-found p{font-size:.82rem;color:#333;}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;}
+.footer-left,.footer-right{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:#1e1e1e;}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="detroit-roses.html">
+    <img src="rose-icon.png" alt="Rose" style="width:14px;height:auto;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6));">
+    <div class="logo-text">
+      <h1><span class="detroit">Detroit</span> <span class="roses">Roses</span></h1>
+      <div class="tagline">From the Neighborhoods that Raised Us · detroitroses.org</div>
+    </div>
+  </a>
+  <nav>
+    <a href="detroit-roses.html" class="back">← Back to the Map</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<div id="rose-page"></div>
+
+<footer>
+  <span class="footer-left">Detroit Roses Archive · detroitroses.org</span>
+  <span class="footer-right">Preserving Black Detroit</span>
+</footer>
+
+<script>
+const N = {
+  'brightmoor':{'name':'Brightmoor','district':1,'distName':'Northwest','desc':'A resilient far northwest neighborhood long home to working-class families, shaped by decades of community organizing and mutual aid.','pop':'~18,000','founded':'1920s','stories':[{name:'Marvella Johnson',years:'1924–2018',quote:'"We didn\'t have much, but we had each other on that block."'},{name:'Theodore Briggs',years:'1939–present',quote:'"Brightmoor raised me. I raised my children here. This is home."'}]},
+  'downtown':{'name':'Downtown','district':7,'distName':'Southwest / Central','desc':'The center of Detroit and the historic capital of the American automobile industry. Downtown\'s skyline reflects a century of ambition, loss, and renewal.','pop':'~5,000','founded':'1701','stories':[{name:'Ida "Mama Ida" Jefferson',years:'1918–2011',quote:'"Downtown Detroit was magnificent. The Hudson\'s department store at Christmas. Oh lord."'},{name:'George Archer',years:'1941–present',quote:'"The rebellion in \'67 broke something. But Detroit has been trying to fix it ever since, and that matters."'}]},
+  'midtown':{'name':'Midtown','district':7,'distName':'Southwest / Central','desc':'The cultural core of the city — Wayne State, the Detroit Institute of Arts, the Detroit Medical Center. Midtown navigates questions of equity and belonging as it evolves.','pop':'~18,000','founded':'1880s','stories':[{name:'Marcus Webb',years:'1965–present',quote:'"Midtown belongs to everybody who stayed when it was hard. Not just those who showed up after."'}]},
+  'bagley':{'name':'Bagley','district':2,'distName':'North','desc':'A northwest Detroit neighborhood with a rich multicultural history and a vibrant immigrant community alongside longtime residents.','pop':'~9,000','founded':'1920s','stories':[]},
+  'grandmont-rosedale':{'name':'Grandmont-Rosedale','district':1,'distName':'Northwest','desc':'One of Detroit\'s most civic-minded neighborhoods — an alliance of five distinct communities united by one of the city\'s most active neighborhood organizations.','pop':'~13,000','founded':'1920s','stories':[]},
+  'franklin-park':{'name':'Franklin Park','district':1,'distName':'Northwest','desc':'A west-side community anchored by Rouge Park — Detroit\'s largest park — and shaped by generations of working-class families who built their lives here.','pop':'~9,000','founded':'1920s','stories':[]},
+  'russell-woods':{'name':'Russell Woods','district':3,'distName':'North Central','desc':'Russell Woods is a historic neighborhood whose elegant homes housed many of Detroit\'s prominent Black families during the mid-20th century.','pop':'~4,000','founded':'1920s','stories':[]},
+  'core-city':{'name':'Core City','district':7,'distName':'Southwest / Central','desc':'Core City sits at the geographic heart of Detroit, a neighborhood that has been at the center of community land trust experiments and grassroots revitalization efforts.','pop':'~6,000','founded':'1900s','stories':[]},
+  'lasalle-gardens':{'name':'Lasalle Gardens','district':3,'distName':'North Central','desc':'A compact near-west side neighborhood adjacent to Boston-Edison, Lasalle Gardens has maintained a strong community identity through decades of change.','pop':'~3,500','founded':'1920s','stories':[]},
+  'chandler-park':{'name':'Chandler Park','district':5,'distName':'East','desc':'Named for the park at its heart, Chandler Park is an east-side neighborhood whose residents have long organized around green space and community resilience.','pop':'~5,000','founded':'1920s','stories':[]},
+  'green-acres':{'name':'Green Acres','district':4,'distName':'Northeast','desc':'A northeast Detroit community known for its tight-knit residents and strong neighborhood association that advocates for its people.','pop':'~5,800','founded':'1940s','stories':[]},
+  'castle-rouge':{'name':'Castle Rouge','district':1,'distName':'Northwest','desc':'A small far-west community adjacent to Brightmoor, Castle Rouge carries a quiet history of working families and neighborhood solidarity.','pop':'~2,500','founded':'1920s','stories':[]},
+  'milwaukee-junction':{'name':'Milwaukee Junction','district':3,'distName':'North Central','desc':'Once an industrial hub where railroad lines converged, Milwaukee Junction is one of Detroit\'s oldest neighborhoods and now a site of creative reuse and artist studios.','pop':'~4,000','founded':'1880s','stories':[]},
+  'medical-center':{'name':'Medical Center','district':7,'distName':'Southwest / Central','desc':'Home to the Detroit Medical Center complex, this neighborhood has been transformed by the expansion of one of the largest medical campuses in the country.','pop':'~3,000','founded':'1900s','stories':[]},
+  'mcdougall-hunt':{'name':'McDougall-Hunt','district':6,'distName':'Southeast','desc':'An east-side neighborhood shaped by its working-class roots and proximity to the Eastern Market corridor, McDougall-Hunt holds deep generational memory.','pop':'~5,500','founded':'1890s','stories':[]},
+  'blackstone-park':{'name':'Blackstone Park','district':2,'distName':'North','desc':'A quiet northwest-area residential community known for its stable housing stock and close-knit block clubs.','pop':'~3,500','founded':'1920s','stories':[]},
+  'greensbriar':{'name':'Greensbriar','district':4,'distName':'Northeast','desc':'A northeast neighborhood bounded by major thoroughfares, Greensbriar has maintained a strong identity built around its schools and churches.','pop':'~4,200','founded':'1940s','stories':[]},
+  'aviation':{'name':'Aviation','district':7,'distName':'Southwest / Central','desc':'A compact southwest neighborhood that takes its name from the old aviation heritage of the area, anchored by long-tenured families.','pop':'~3,000','founded':'1930s','stories':[]},
+  'briggs':{'name':'Briggs','district':7,'distName':'Southwest / Central','desc':'Once adjacent to Briggs Stadium (now Comerica Park), this neighborhood carries the legacy of Detroit\'s baseball history and the working-class communities that surrounded the ballpark.','pop':'~4,500','founded':'1900s','stories':[]},
+  'kranz-woods':{'name':'Kranz Woods','district':2,'distName':'North','desc':'A residential community in Detroit\'s northwest section, Kranz Woods sits within the larger Bagley-area corridor of stable single-family homes.','pop':'~4,000','founded':'1930s','stories':[]},
+  'west-side-industrial':{'name':'West Side Industrial','district':7,'distName':'Southwest / Central','desc':'An industrial corridor along the southwest riverfront, this district has housed manufacturing, warehousing, and the labor of generations of Detroit workers.','pop':'—','founded':'1880s','stories':[]},
+  'regent-park':{'name':'Regent Park','district':3,'distName':'North Central','desc':'Regent Park is super cool and we love it here.','pop':'—','founded':'—','stories':[{'name':'BreAnn White','years':'1995–present','quote':'"I\'m so eastside and we give back to the community that raised us."'}]}
+};
+
+function slugify(s){ return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-'); }
+
+function row(label, value){
+  if(!value) return `<tr><td>${label}</td><td style="color:#2a2a2a;font-style:italic;">—</td></tr>`;
+  return `<tr><td>${label}</td><td>${value}</td></tr>`;
+}
+
+function photoSVG(){
+  return `<svg width="40" height="40" viewBox="0 0 36 36" fill="none">
+    <rect x="2" y="6" width="32" height="24" rx="2" stroke="#1e1e1e" stroke-width="1.2"/>
+    <circle cx="18" cy="18" r="6" stroke="#1e1e1e" stroke-width="1.2"/>
+    <circle cx="27" cy="10" r="2" fill="#1e1e1e"/>
+  </svg>`;
+}
+
+function render(nd, person){
+  document.title = `${person.name} · Detroit Roses Archive`;
+
+  const birthYear = person.years ? person.years.split('–')[0].trim() : '—';
+  const deathYear = person.years ? (person.years.split('–')[1]?.trim() || '—') : '—';
+  const storyIdx  = nd.stories.findIndex(s => s.name === person.name);
+  const identifier = `DRDA-${nd.district}${String(storyIdx + 1).padStart(3,'0')}`;
+  const todayStr  = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const url       = window.location.href;
+
+  document.getElementById('rose-page').innerHTML = `
+    <div class="hero">
+      <div class="hero-eyebrow">Oral History · Detroit Roses Archive</div>
+      <div class="hero-name">${person.name}</div>
+      <div class="hero-id">Archive Identifier: ${identifier}</div>
+      ${person.quote ? `<div class="hero-quote">${person.quote}</div>` : ''}
+    </div>
+
+    <div class="page-body">
+
+      <!-- ── LEFT COLUMN ── -->
+      <div class="main-col">
+
+        <!-- 1. Core Metadata -->
+        <div class="section">
+          <div class="section-hd"><h3>Core Metadata</h3></div>
+          <table class="meta-table">
+            ${row('Title', person.name)}
+            ${row('Subject', person.subject || 'Oral History')}
+            ${row('Creator', person.creator || 'Detroit Roses Archive')}
+            ${row('Publisher', 'Detroit Roses · detroitroses.org')}
+            ${row('Rights', person.rights || 'All rights reserved · Detroit Roses Archive')}
+            ${row('Type', 'Historic Person')}
+            ${row('Identifier', identifier)}
+          </table>
+        </div>
+
+        <div class="sec-divider"></div>
+
+        <!-- 2. Person Item Type Metadata -->
+        <div class="section">
+          <div class="section-hd"><h3>Person Item Type Metadata</h3></div>
+          <table class="meta-table">
+            ${row('Neighborhood', nd.name + ', Detroit')}
+            ${row('Birthplace', person.birthplace || '—')}
+            ${row('District', `District ${nd.district} · ${nd.distName}`)}
+            ${row('Occupation', person.occupation || '—')}
+            ${row('Birth Year', birthYear)}
+            ${row('Death / End Year', deathYear)}
+          </table>
+          <div style="margin-top:18px;">
+            <div style="font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#383838;margin-bottom:8px;">Biographical Text</div>
+            <div class="content-block ${person.bio ? '' : 'empty'}">
+              <p>${person.bio || `A biographical text for ${person.name} has not yet been added to the archive. To contribute, contact the Detroit Roses Archive.`}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-divider"></div>
+
+        <!-- 3. Oral History -->
+        <div class="section">
+          <div class="section-hd"><h3>Oral History</h3></div>
+          <div class="content-block ${person.oralHistory ? '' : 'empty'}">
+            <p>${person.oralHistory || `No oral history recording has been added for ${person.name} yet. Audio, video, or transcript contributions are welcome through the archive's submission form.`}</p>
+          </div>
+        </div>
+
+        <div class="sec-divider"></div>
+
+        <!-- 4. Other Digital Media -->
+        <div class="section">
+          <div class="section-hd"><h3>Other Digital Media</h3></div>
+          <div class="content-block empty">
+            <p>No additional digital media on file for ${person.name}. Documents, scans, letters, and other materials can be submitted to the archive.</p>
+          </div>
+        </div>
+
+        <div class="sec-divider"></div>
+
+        <!-- 5. Bibliography -->
+        <div class="section">
+          <div class="section-hd"><h3>Bibliography</h3></div>
+          <ul class="bib-list">
+            ${person.bibliography && person.bibliography.length
+              ? person.bibliography.map(b => `<li>${b}</li>`).join('')
+              : '<li class="empty">No bibliography entries recorded for this oral history.</li>'}
+          </ul>
+        </div>
+
+        <div class="sec-divider"></div>
+
+        <!-- 6. Citation -->
+        <div class="section">
+          <div class="section-hd"><h3>Citation</h3></div>
+          <div class="citation-box">
+            <p>Detroit Roses Archive, <strong>"${person.name},"</strong> <em>Detroit Roses Archive · detroitroses.org</em>, accessed ${todayStr}, <a href="${url}">${url}</a>.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT SIDEBAR ── -->
+      <div class="side-col">
+
+        <!-- Photo -->
+        <span class="side-sec-label">Photograph</span>
+        <div class="photo-main">${photoSVG()}</div>
+        <p class="photo-credit">No photograph on file. Submit a photo to the Detroit Roses Archive.</p>
+
+        <!-- Tags -->
+        <span class="side-sec-label">Tags</span>
+        <div class="tags">
+          ${[nd.name, 'Detroit', `District ${nd.district}`, 'Oral History', ...(person.tags || [])].map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+
+        <!-- Back to map -->
+        <a class="back-link" href="detroit-roses.html">← Back to the Detroit Roses Map</a>
+
+      </div>
+    </div>
+  `;
+}
+
+function notFound(){
+  document.getElementById('rose-page').innerHTML = `
+    <div class="not-found">
+      <h2>Rose not found</h2>
+      <p>We could not locate this oral history in the archive.</p>
+      <br>
+      <a href="detroit-roses.html" style="color:var(--red);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;">← Return to the Map</a>
+    </div>`;
+}
+
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const nKey = params.get('n');
+  const pKey = params.get('p');
+  if(!nKey || !pKey){ notFound(); return; }
+  const nd = N[nKey];
+  if(!nd || !nd.stories){ notFound(); return; }
+  const person = nd.stories.find(s => slugify(s.name) === pKey);
+  if(!person){ notFound(); return; }
+  render(nd, person);
+})();
+</script>
+</body>
+</html>
